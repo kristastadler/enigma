@@ -1,4 +1,4 @@
-class Key
+class Keys
   attr_reader :encryption_array
 
   def initialize
