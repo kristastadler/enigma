@@ -15,7 +15,13 @@ class OffsetTest < Minitest::Test
   def test_it_has_attributes
     offset = Offset.new("040895")
 
-    assert_equal "040895", offset.date    
+    assert_equal "040895", offset.date
+  end
+
+  def test_it_can_square_date
+    offset = Offset.new("040895")
+
+    assert_equal 1672401025, offset.square
   end
 
 end
