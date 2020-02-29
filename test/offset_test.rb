@@ -30,4 +30,14 @@ class OffsetTest < Minitest::Test
     assert_equal 1025, offset.last_four_digits
   end
 
+  def test_it_creates_individual_offsets
+    offset = Offset.new("040895")
+
+    assert_equal 1, offset.find_a_offset
+    assert_equal 0, offset.find_b_offset
+    assert_equal 2, offset.find_c_offset
+    assert_equal 5, offset.find_d_offset
+    
+  end
+
 end
