@@ -5,4 +5,9 @@ class Offset
     @date = ddmmyy
   end
 
+  def square
+    integer = date.to_i
+    integer * integer
+  end
+
 end
