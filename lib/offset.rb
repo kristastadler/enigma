@@ -19,6 +19,23 @@ class Offset
     final_4_digits << square.each_char.map(&:to_i)[-2]
     final_4_digits << square.each_char.map(&:to_i)[-1]
 
-    final_4_digits.join.to_i
+    final_4_digits
   end
+
+  def find_a_offset
+    last_four_digits[0]
+  end
+
+  def find_b_offset
+    last_four_digits[1]
+  end
+
+  def find_c_offset
+    last_four_digits[2]
+  end
+
+  def find_d_offset
+    last_four_digits[3]
+  end
+
 end
