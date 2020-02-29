@@ -7,7 +7,7 @@ class KeyTest < Minitest::Test
   def test_it_exists
     key1 = Key.new
 
-    assert_instance_of Key, key
+    assert_instance_of Key, key1
   end
 
   def test_it_has_attributes
@@ -15,5 +15,5 @@ class KeyTest < Minitest::Test
 
     assert_equal [], key1.encryption_string
   end
-  
+
 end
