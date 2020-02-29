@@ -1,27 +1,28 @@
 {
   "Unit Tests": {
     "coverage": {
-      "/Users/kristastadler/turing/1module/projects/enigma/lib/key.rb": {
+      "/Users/kristastadler/turing/1module/projects/enigma/lib/enigma.rb": {
         "lines": [
           1,
+          null,
+          1,
+          null,
+          1,
+          null,
+          null,
           1,
           null,
           1,
-          2,
+          null,
           null,
           null,
           1,
-          2,
-          12,
-          null,
-          0,
-          null,
           null,
           null,
           null
         ]
       }
     },
-    "timestamp": 1582947604
+    "timestamp": 1583005245
   }
 }
