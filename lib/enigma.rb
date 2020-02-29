@@ -3,10 +3,6 @@ require './lib/keys'
 require './lib/offset'
 
 class Enigma
-  attr_reader :a_shift,
-              :b_shift,
-              :c_shift,
-              :d_shift
 
   def initialize
   end
@@ -33,16 +29,22 @@ class Enigma
     c_offset = offset.find_c_offset
     d_offset = offset.find_d_offset
 
-    @a_shift = a_key + a_offset
-    @b_shift = b_key + b_offset
-    @c_shift = c_key + c_offset
-    @d_shift = d_key + d_offset
+    b_shift = b_key + b_offset
+    c_shift = c_key + c_offset
+    d_shift = d_key + d_offset
+
+    shift_hash = {
+                  a_shift: a_key + a_offset,
+                  b_shift: b_key + b_offset,
+                  c_shift: c_key + c_offset,
+                  d_shift: d_key + d_offset
+                }
   end
 
   def encrypt_message(message, key, date)
     alphabet_array = ("a".."z").to_a << " "
     message_array = message.each_char.map(&:to_s)
-    encryption_shift(key, date)
+    encryption_hash = encryption_shift(key, date)
     require "pry"; binding.pry
 
   end
