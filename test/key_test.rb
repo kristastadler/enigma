@@ -19,10 +19,10 @@ class KeyTest < Minitest::Test
   def test_it_creates_key_encryption_array
     key1 = Key.new
     key2 = Key.new
-    key2.stubs(:create_encryption_array).returns(03291)
+    require "pry"; binding.pry
 
     assert_equal [47821], key1.create_encryption_array(47821)
-    assert_equal [03291], key2.create_encryption_array 
+    assert_instance_of Array, key2.create_encryption_array
   end
 
 end
