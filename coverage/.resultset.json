@@ -12,19 +12,9 @@
           null,
           1,
           null,
-          0,
-          null,
-          null,
-          null,
-          0,
-          null,
-          null,
-          null
-        ]
-      },
-      "/Users/kristastadler/turing/1module/projects/enigma/lib/keys.rb": {
-        "lines": [
           1,
+          null,
+          null,
           null,
           1,
           null,
@@ -33,6 +23,6 @@
         ]
       }
     },
-    "timestamp": 1583006465
+    "timestamp": 1583008692
   }
 }

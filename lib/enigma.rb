@@ -10,7 +10,7 @@ class Enigma
                   encryption: nil,
                   key: key,
                   date: date
-    }
+                }
     encryption
   end
 

@@ -1,6 +1,7 @@
 class Keys
 
-  def initialize
+  def initialize(number)
+    @number = number
   end
 
 end
