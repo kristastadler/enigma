@@ -11,4 +11,10 @@ class KeysTest < Minitest::Test
     assert_instance_of Keys, keys
   end
 
+  def test_it_has_attributes
+    keys = Keys.new("12345")
+
+    assert_equal "12345", keys.number
+  end
+
 end
