@@ -60,8 +60,19 @@
           null,
           null
         ]
+      },
+      "/Users/kristastadler/turing/1module/projects/enigma/lib/offset.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          2,
+          null,
+          null,
+          null
+        ]
       }
     },
-    "timestamp": 1583011164
+    "timestamp": 1583011331
   }
 }
