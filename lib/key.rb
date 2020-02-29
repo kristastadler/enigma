@@ -1,8 +1,8 @@
 class Key
-  attr_reader :encryption_string
+  attr_reader :encryption_array
 
   def initialize
-    @encryption_string = []
+    @encryption_array = []
   end
 
 end
