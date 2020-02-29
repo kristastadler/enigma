@@ -40,13 +40,17 @@ class Enigma
                   d_shift: d_key + d_offset
                 }
   end
+  
 
   def encrypt_message(message, key, date)
-    alphabet_array = ("a".."z").to_a << " "
+    alphabet_letters = ("a".."z").to_a << " "
+    numbers = (1..27)
+    zipped = alphabet_letters.zip(numbers)
+    alphabet_values = Hash[zipped]
+
+
     message_array = message.each_char.map(&:to_s)
     encryption_hash = encryption_shift(key, date)
-    require "pry"; binding.pry
-
   end
 
 end
