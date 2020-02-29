@@ -22,4 +22,11 @@ class EnigmaTest < Minitest::Test
     assert_equal expected, enigma.encrypt("hello world", "02715", "040895")
   end
 
+  def test_it_can_encrypt_message
+    enigma = Enigma.new
+
+    assert_equal "keder ohulw", enigma.encrypt_message("hello world", "02715", "040895")
+
+  end
+
 end
