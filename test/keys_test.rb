@@ -25,5 +25,28 @@ class KeysTest < Minitest::Test
     assert_instance_of Array, keys2.create_encryption_array
   end
 
-  def test_it_creates_individual_key
+  def test_it_creates_individual_keys
+    keys1 = Keys.new
+    keys1.create_encryption_array(47821)
+    keys2 = Keys.new
+    keys2.create_encryption_array
+
+    assert_equal 47, keys1.create_a_key
+    assert_equal 78, keys1.create_b_key
+    assert_equal 82, keys1.create_c_key
+    assert_equal 21, keys1.create_d_key
+
+    assert_equal 2, keys1.create_a_key.length
+    assert_equal 2, keys1.create_b_key.length
+    assert_equal 2, keys1.create_c_key.length
+    assert_equal 2, keys1.create_d_key.length
+  end
+
+
+
+
+
+
+
+
 end
