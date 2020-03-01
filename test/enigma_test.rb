@@ -22,6 +22,19 @@ class EnigmaTest < Minitest::Test
     assert_equal expected, enigma.encrypt("hello world", "02715", "040895")
   end
 
+  def test_it_can_create_encryption_hash_with_todays_date
+    enigma = Enigma.new
+
+    expected = {
+                 encryption: "keder ohulw",
+                 key: "02715",
+                 date: Time.now(strftime("%d%m%y"))
+                }
+
+    assert_equal expected, enigma.encrypt("hello world", "02715")
+  end
+
+
   def test_it_can_create_full_list_of_alphabet_values
     enigma = Enigma.new
 
