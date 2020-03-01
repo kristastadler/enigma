@@ -7,13 +7,18 @@ class Enigma
   def initialize
   end
 
-  def encrypt(message, key, date = Date.today.strftime('%d%m%y'))
+  def encrypt(message, key = create_key, date = Date.today.strftime('%d%m%y'))
     encryption = {
                   encryption: encrypt_message(message, key, date),
                   key: key,
                   date: date
                 }
     encryption
+  end
+
+  def create_key
+    key = Array.new(5){rand(0..9)}
+    key.map(&:to_s).join
   end
 
   def encryption_shift(key, date)
