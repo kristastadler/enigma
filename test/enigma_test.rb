@@ -22,6 +22,18 @@ class EnigmaTest < Minitest::Test
     assert_equal expected, enigma.encrypt("hello world", "02715", "040895")
   end
 
+  def test_it_can_create_decryption_hash
+    enigma = Enigma.new
+
+    expected = {
+                 decryption: "hello world",
+                 key: "02715",
+                 date: "040895"
+                }
+
+    assert_equal expected, enigma.decrypt("keder ohulw", "02715", "040895")
+  end
+
   def test_it_can_encrypt_without_date_passed_in
     enigma = Enigma.new
     Date.stubs(:today).returns(Date.new(2020, 11, 04))
@@ -33,6 +45,19 @@ class EnigmaTest < Minitest::Test
                 }
 
     assert_equal expected, enigma.encrypt("hello world", "02715")
+  end
+
+  def test_it_can_decrypt_without_date_passed_in
+    enigma = Enigma.new
+    Date.stubs(:today).returns(Date.new(2020, 11, 04))
+
+    expected = {
+                 decryption: "hello world",
+                 key: "02715",
+                 date: "041120"
+                }
+
+    assert_equal expected, enigma.decrypt("nib udmcxpu", "02715")
   end
 
   def test_it_can_create_key
@@ -75,5 +100,12 @@ class EnigmaTest < Minitest::Test
 
     assert_equal "keder ohulw", enigma.encrypt_message("hello world", "02715", "040895")
   end
+
+  def test_it_can_decrypt_message
+    enigma = Enigma.new
+
+    assert_equal "hello world", enigma.decrypt_message("keder ohulw", "02715", "040895")
+  end
+
 
 end
