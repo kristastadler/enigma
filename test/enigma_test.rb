@@ -22,6 +22,27 @@ class EnigmaTest < Minitest::Test
     assert_equal expected, enigma.encrypt("hello world", "02715", "040895")
   end
 
+  def test_it_can_encrypt_without_date_passed_in
+    enigma = Enigma.new
+    Date.stubs(:today).returns(Date.new(2020, 11, 04))
+
+    expected = {
+                 encryption: "nib udmcxpu",
+                 key: "02715",
+                 date: "041120"
+                }
+
+    assert_equal expected, enigma.encrypt("hello world", "02715")
+  end
+
+  def test_it_can_encrypt_without_date_or_key_passed_in
+    enigma = Enigma.new
+    Date.stubs(:today).returns(Date.new(2020, 11, 04))
+
+    assert_instance_of Hash, enigma.encrypt("hello world")
+  end
+
+
   def test_it_can_create_full_list_of_alphabet_values
     enigma = Enigma.new
 
