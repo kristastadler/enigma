@@ -47,6 +47,19 @@ class EnigmaTest < Minitest::Test
     assert_equal expected, enigma.encrypt("hello world", "02715")
   end
 
+  def test_it_can_decrypt_without_date_passed_in
+    enigma = Enigma.new
+    Date.stubs(:today).returns(Date.new(2020, 11, 04))
+
+    expected = {
+                 decryption: "hello world",
+                 key: "02715",
+                 date: "041120"
+                }
+
+    assert_equal expected, enigma.decrypt("nib udmcxpu", "02715")
+  end
+
   def test_it_can_create_key
     enigma = Enigma.new
 
