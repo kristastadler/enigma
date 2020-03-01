@@ -36,12 +36,6 @@ class EnigmaTest < Minitest::Test
     assert_equal 3, enigma.alphabet_value("c")
   end
 
-  def test_calculate_a_encryption_value
-    enigma = Enigma.new
-
-    assert_equal 11, enigma_calculate_a_encryption_value
-  end
-
   def test_it_can_encrypt_message
     skip
     enigma = Enigma.new

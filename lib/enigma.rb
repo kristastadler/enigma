@@ -59,6 +59,7 @@ class Enigma
   def encrypt_message(message, key, date)
     message_array = message.each_char.map(&:to_s)
     encryption_hash = encryption_shift(key, date)
+
     i = 0
     a_transform = {}
     b_transform = {}
@@ -70,7 +71,7 @@ class Enigma
       i += 1
 
       if 4/i == 4
-        a_transform[letter] = alphabet_with_values.key(alphabet_value(letter) + encryption_hash[:a_shift])
+        a_transform[letter] = alphabet_with_values.key(alphabet_value([letter) + encryption_hash[:a_shift])
 
       end
 
