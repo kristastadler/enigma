@@ -69,13 +69,41 @@ class Enigma
 
     message_array.each do |letter|
       i += 1
-
-      if 4/i == 4
-        a_transform[letter] = alphabet_with_values.key(alphabet_value([letter) + encryption_hash[:a_shift])
-
+      if i == 1
+        if encryption_hash[:a_shift] == 27
+          letter = a_transform[letter] = letter
+          encrypted_message << letter
+        else
+          letter = a_transform[letter] = alphabet_with_values.key(alphabet_value(letter) + encryption_hash[:a_shift])
+          encrypted_message << letter
+        end
+      elsif i == 2
+        if encryption_hash[:b_shift] == 27
+          letter = a_transform[letter] = letter
+          encrypted_message << letter
+        else
+        letter = a_transform[letter] = alphabet_with_values.key(alphabet_value(letter) + encryption_hash[:b_shift])
+        encrypted_message << letter
+        end
+      elsif i == 3
+        if encryption_hash[:c_shift] == 27
+          letter = a_transform[letter] = letter
+          encrypted_message << letter
+        else
+        letter = a_transform[letter] = alphabet_with_values.key(alphabet_value(letter) + encryption_hash[:c_shift])
+        encrypted_message << letter
+        end
+      elsif i == 4
+        if encryption_hash[:d_shift] == 27
+          letter = a_transform[letter] = letter
+          encrypted_message << letter
+        else
+        letter = a_transform[letter] = alphabet_with_values.key(alphabet_value(letter) + encryption_hash[:d_shift])
+        encrypted_message << letter
+        end
       end
-
     end
+    encrypted_message
   end
 
 end

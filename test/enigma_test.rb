@@ -37,7 +37,6 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_it_can_encrypt_message
-    skip
     enigma = Enigma.new
 
     assert_equal "keder ohulw", enigma.encrypt_message("hello world", "02715", "040895")
