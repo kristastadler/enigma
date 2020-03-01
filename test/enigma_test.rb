@@ -22,19 +22,31 @@ class EnigmaTest < Minitest::Test
     assert_equal expected, enigma.encrypt("hello world", "02715", "040895")
   end
 
-  def test_it_creates_hash_of_alphabet_values
+  def test_it_can_create_full_list_of_alphabet_values
     enigma = Enigma.new
 
-    assert_equal 21, enigma.find_alphabet_value("u")
-    assert_equal 27, enigma.find_alphabet_value(" ")
-    assert_equal 3, enigma.find_alphabet_value("c")
+    assert_equal 27, enigma.alphabet_with_values.length
+  end
+
+  def test_it_finds_alphabet_value
+    enigma = Enigma.new
+
+    assert_equal 21, enigma.alphabet_value("u")
+    assert_equal 27, enigma.alphabet_value(" ")
+    assert_equal 3, enigma.alphabet_value("c")
+  end
+
+  def test_calculate_a_encryption_value
+    enigma = Enigma.new
+
+    assert_equal 11, enigma_calculate_a_encryption_value
   end
 
   def test_it_can_encrypt_message
+    skip
     enigma = Enigma.new
 
     assert_equal "keder ohulw", enigma.encrypt_message("hello world", "02715", "040895")
-
   end
 
 end

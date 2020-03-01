@@ -40,17 +40,41 @@ class Enigma
                   d_shift: d_key + d_offset
                 }
   end
-  
 
-  def encrypt_message(message, key, date)
+  def alphabet_with_values
     alphabet_letters = ("a".."z").to_a << " "
     numbers = (1..27)
     zipped = alphabet_letters.zip(numbers)
     alphabet_values = Hash[zipped]
+  end
 
+  def alphabet_value(letter)
+    alphabet_letters = ("a".."z").to_a << " "
+    numbers = (1..27)
+    zipped = alphabet_letters.zip(numbers)
+    alphabet_values = Hash[zipped]
+    alphabet_values[letter]
+  end
 
+  def encrypt_message(message, key, date)
     message_array = message.each_char.map(&:to_s)
     encryption_hash = encryption_shift(key, date)
+    i = 0
+    a_transform = {}
+    b_transform = {}
+    c_transform = {}
+    d_transform = {}
+    encrypted_message = []
+
+    message_array.each do |letter|
+      i += 1
+
+      if 4/i == 4
+        a_transform[letter] = alphabet_with_values.key(alphabet_value(letter) + encryption_hash[:a_shift])
+
+      end
+
+    end
   end
 
 end
