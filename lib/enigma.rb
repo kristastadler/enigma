@@ -9,7 +9,7 @@ class Enigma
 
   def encrypt(message, key, date)
     encryption = {
-                  encryption: nil,
+                  encryption: encrypt_message(message, key, date),
                   key: key,
                   date: date
                 }
