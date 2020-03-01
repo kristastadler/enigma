@@ -35,13 +35,19 @@ class EnigmaTest < Minitest::Test
     assert_equal expected, enigma.encrypt("hello world", "02715")
   end
 
+  def test_it_can_create_key
+    enigma = Enigma.new
+
+    assert_instance_of String, enigma.create_key
+    assert_equal 5, enigma.create_key.length
+  end
+
   def test_it_can_encrypt_without_date_or_key_passed_in
     enigma = Enigma.new
     Date.stubs(:today).returns(Date.new(2020, 11, 04))
 
     assert_instance_of Hash, enigma.encrypt("hello world")
   end
-
 
   def test_it_can_create_full_list_of_alphabet_values
     enigma = Enigma.new
@@ -56,6 +62,13 @@ class EnigmaTest < Minitest::Test
     assert_equal 27, enigma.alphabet_value(" ")
     assert_equal 3, enigma.alphabet_value("c")
   end
+
+  def test_it_finds_shift
+    enigma = Enigma.new
+
+    assert_instance_of Hash, enigma.encryption_shift("02715", "040895")
+  end
+
 
   def test_it_can_encrypt_message
     enigma = Enigma.new
