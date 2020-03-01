@@ -22,13 +22,14 @@ class EnigmaTest < Minitest::Test
     assert_equal expected, enigma.encrypt("hello world", "02715", "040895")
   end
 
-  def test_it_can_create_encryption_hash_with_todays_date
+  def test_it_can_encrypt_without_date_passed_in
     enigma = Enigma.new
+    Date.stubs(:today).returns(Date.new(2020, 11, 04))
 
     expected = {
-                 encryption: "keder ohulw",
+                 encryption: "nib udmcxpu",
                  key: "02715",
-                 date: Time.now(strftime("%d%m%y"))
+                 date: "041120"
                 }
 
     assert_equal expected, enigma.encrypt("hello world", "02715")
