@@ -16,6 +16,14 @@ class Enigma
     encryption
   end
 
+  def decrypt(message, key, date = Date.today.strftime('%d%m%y'))
+    decryption = {
+                  decryption: "hello world",
+                  key: key,
+                  date: date
+                  }
+  end
+
   def create_key
     key = Array.new(5){rand(0..9)}
     key.map(&:to_s).join
