@@ -174,7 +174,7 @@ class Enigma
           encrypted_message << letter
         else
           shift_value = alphabet_value(letter) - encryption_hash[:a_shift]
-          if shift_value > 27
+          if shift_value < 27
             x = shift_value / 27
             y = 27 * x
             shift_value = shift_value - y
@@ -191,7 +191,7 @@ class Enigma
           encrypted_message << letter
         else
           shift_value = alphabet_value(letter) - encryption_hash[:b_shift]
-          if shift_value > 27
+          if shift_value < 27
             x = shift_value / 27
             y = 27 * x
             shift_value = shift_value - y
@@ -208,7 +208,7 @@ class Enigma
           encrypted_message << letter
         else
           shift_value = alphabet_value(letter) - encryption_hash[:c_shift]
-          if shift_value > 27
+            if shift_value < 0
             x = shift_value / 27
             y = 27 * x
             shift_value = shift_value - y
@@ -225,11 +225,11 @@ class Enigma
           encrypted_message << letter
         else
           shift_value = alphabet_value(letter) - encryption_hash[:d_shift]
-          if shift_value > 27
+          if shift_value < 0
             x = shift_value / 27
             y = 27 * x
             shift_value = shift_value - y
-            letter = a_transform[letter] = alphabet_with_values.key(shift_value)
+            letter = d_transform[letter] = alphabet_with_values.key(shift_value)
             encrypted_message << letter
           else
             letter = d_transform[letter] = alphabet_with_values.key(shift_value)
@@ -240,4 +240,5 @@ class Enigma
     end
     encrypted_message.join
   end
+
 end
