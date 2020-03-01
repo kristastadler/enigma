@@ -69,41 +69,77 @@ class Enigma
 
     message_array.each do |letter|
       i += 1
-      if i == 1
+      if i == 1 || i == 5 || i == 9
         if encryption_hash[:a_shift] == 27
           letter = a_transform[letter] = letter
           encrypted_message << letter
         else
-          letter = a_transform[letter] = alphabet_with_values.key(alphabet_value(letter) + encryption_hash[:a_shift])
-          encrypted_message << letter
+          shift_value = alphabet_value(letter) + encryption_hash[:a_shift]
+          if shift_value > 27
+            x = shift_value / 27
+            y = 27 * x
+            shift_value = shift_value - y
+            letter = a_transform[letter] = alphabet_with_values.key(shift_value)
+            encrypted_message << letter
+          else
+            letter = a_transform[letter] = alphabet_with_values.key(shift_value)
+            encrypted_message << letter
+          end
         end
-      elsif i == 2
+      elsif i == 2 || i == 6 || i == 10
         if encryption_hash[:b_shift] == 27
-          letter = a_transform[letter] = letter
+          letter = b_transform[letter] = letter
           encrypted_message << letter
         else
-        letter = a_transform[letter] = alphabet_with_values.key(alphabet_value(letter) + encryption_hash[:b_shift])
-        encrypted_message << letter
+          shift_value = alphabet_value(letter) + encryption_hash[:b_shift]
+          if shift_value > 27
+            x = shift_value / 27
+            y = 27 * x
+            shift_value = shift_value - y
+            letter = a_transform[letter] = alphabet_with_values.key(shift_value)
+            encrypted_message << letter
+          else
+            letter = b_transform[letter] = alphabet_with_values.key(shift_value)
+            encrypted_message << letter
+          end
         end
-      elsif i == 3
+      elsif i == 3 || i == 7 || i == 11
         if encryption_hash[:c_shift] == 27
-          letter = a_transform[letter] = letter
+          letter = c_transform[letter] = letter
           encrypted_message << letter
         else
-        letter = a_transform[letter] = alphabet_with_values.key(alphabet_value(letter) + encryption_hash[:c_shift])
-        encrypted_message << letter
+          shift_value = alphabet_value(letter) + encryption_hash[:c_shift]
+          if shift_value > 27
+            x = shift_value / 27
+            y = 27 * x
+            shift_value = shift_value - y
+            letter = a_transform[letter] = alphabet_with_values.key(shift_value)
+            encrypted_message << letter
+          else
+            letter = c_transform[letter] = alphabet_with_values.key(shift_value)
+            encrypted_message << letter
+          end
         end
-      elsif i == 4
+      elsif i == 4 || i == 8 || i == 12
         if encryption_hash[:d_shift] == 27
-          letter = a_transform[letter] = letter
+          letter = d_transform[letter] = letter
           encrypted_message << letter
         else
-        letter = a_transform[letter] = alphabet_with_values.key(alphabet_value(letter) + encryption_hash[:d_shift])
-        encrypted_message << letter
+          shift_value = alphabet_value(letter) + encryption_hash[:d_shift]
+          if shift_value > 27
+            x = shift_value / 27
+            y = 27 * x
+            shift_value = shift_value - y
+            letter = a_transform[letter] = alphabet_with_values.key(shift_value)
+            encrypted_message << letter
+          else
+            letter = d_transform[letter] = alphabet_with_values.key(shift_value)
+            encrypted_message << letter
+          end
         end
       end
     end
-    encrypted_message
+    encrypted_message.join
   end
 
 end
