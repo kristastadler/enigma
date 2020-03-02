@@ -104,7 +104,7 @@ class EnigmaTest < Minitest::Test
   def test_it_can_encrypt_letter
     enigma = Enigma.new
 
-    assert_equal "k", enigma.encrypt_letter("h")
+    assert_equal "k", enigma.encrypt_letter("02715", "040895", "h", :a_shift)
   end
 
   def test_it_can_encrypt_message

@@ -56,9 +56,21 @@ class Enigma
     shift_value = shift_value - y
   end
 
-  def encrypt_letter(letter)
-    require "pry"; binding.pry
-
+  def encrypt_letter(key, date, letter, shift_by)
+    alphabet = Alphabet.new
+    if final_shift(key, date)[shift_by] == 27
+      @encrypted_message << letter
+    else
+      shift_value = alphabet.letter_value(letter) + final_shift(key, date)[shift_by]
+      if shift_value > 27
+        new_letter = alphabet.find_key(refactor_shift_value(shift_value))
+        @encrypted_message << new_letter
+      else
+        new_letter = alphabet.find_key(shift_value)
+        @encrypted_message << new_letter
+      end
+    end
+    new_letter
   end
 
   def encrypt_message(message, key, date)
@@ -69,7 +81,7 @@ class Enigma
       i += 1
       if i == 1 || i == 5 || i == 9
         if final_shift(key, date)[:a_shift] == 27
-          encrypted_message << letter
+          @encrypted_message << letter
         else
           shift_value = alphabet.letter_value(letter) + final_shift(key, date)[:a_shift]
           if shift_value > 27
