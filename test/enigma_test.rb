@@ -74,13 +74,11 @@ class EnigmaTest < Minitest::Test
     assert_instance_of Hash, enigma.encrypt("hello world")
   end
 
-
   def test_it_finds_shift
     enigma = Enigma.new
 
     assert_instance_of Hash, enigma.encryption_shift("02715", "040895")
   end
-
 
   def test_it_can_encrypt_message
     enigma = Enigma.new
