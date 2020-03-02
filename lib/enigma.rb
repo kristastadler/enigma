@@ -4,8 +4,12 @@ require './lib/offset'
 require './lib/alphabet'
 
 class Enigma
+  attr_reader :encrypted_message,
+              :decrypted_message
 
   def initialize
+    @encrypted_message = []
+    @decrypted_message = []
   end
 
   def encrypt(message, key = create_random_key, date = Date.today.strftime('%d%m%y'))
@@ -52,10 +56,14 @@ class Enigma
     shift_value = shift_value - y
   end
 
+  def encrypt_letter(letter)
+    require "pry"; binding.pry
+
+  end
+
   def encrypt_message(message, key, date)
     alphabet = Alphabet.new
     i = 0
-    encrypted_message = []
 
     create_message_array(message).each do |letter|
       i += 1
@@ -119,7 +127,6 @@ class Enigma
   def decrypt_message(message, key, date)
     alphabet = Alphabet.new
     i = 0
-    encrypted_message = []
 
     create_message_array(message).each do |letter|
       i += 1
@@ -133,20 +140,20 @@ class Enigma
             encrypted_message << letter
           else
             letter = alphabet.find_key(shift_value)
-            encrypted_message << letter
+            @decrypted_message << letter
           end
         end
       elsif i == 2 || i == 6 || i == 10
         if final_shift(key, date)[:b_shift] == 27
-          encrypted_message << letter
+          @decrypted_message << letter
         else
           shift_value = alphabet.letter_value(letter) - final_shift(key, date)[:b_shift]
           if shift_value < 0
             letter = alphabet.find_key(refactor_shift_value(shift_value))
-            encrypted_message << letter
+            @decrypted_message << letter
           else
             letter = alphabet.find_key(shift_value)
-            encrypted_message << letter
+            @decrypted_message << letter
           end
         end
       elsif i == 3 || i == 7 || i == 11
@@ -156,28 +163,28 @@ class Enigma
           shift_value = alphabet.letter_value(letter) - final_shift(key, date)[:c_shift]
             if shift_value < 0
             letter = alphabet.find_key(refactor_shift_value(shift_value))
-            encrypted_message << letter
+            @decrypted_message << letter
           else
             letter = alphabet.find_key(shift_value)
-            encrypted_message << letter
+            @decrypted_message << letter
           end
         end
       elsif i == 4 || i == 8 || i == 12
         if final_shift(key, date)[:d_shift] == 27
-          encrypted_message << letter
+          @decrypted_message << letter
         else
           shift_value = alphabet.letter_value(letter) - final_shift(key, date)[:d_shift]
           if shift_value < 0
             letter = alphabet.find_key(refactor_shift_value(shift_value))
-            encrypted_message << letter
+            @decrypted_message << letter
           else
             letter = alphabet.find_key(shift_value)
-            encrypted_message << letter
+            @decrypted_message << letter
           end
         end
       end
     end
-    encrypted_message.join
+    @decrypted_message.join
   end
 
 end

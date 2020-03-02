@@ -100,7 +100,12 @@ class EnigmaTest < Minitest::Test
 
     assert_equal 24, enigma.refactor_shift_value(78)
   end
-  
+
+  def test_it_can_encrypt_letter
+    enigma = Enigma.new
+
+    assert_equal "k", enigma.encrypt_letter("h")
+  end
 
   def test_it_can_encrypt_message
     enigma = Enigma.new
