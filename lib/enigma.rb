@@ -74,7 +74,6 @@ class Enigma
   end
 
   def encrypt_message(message, key, date)
-    alphabet = Alphabet.new
     i = 0
 
     create_message_array(message).each do |letter|
@@ -88,8 +87,25 @@ class Enigma
       elsif i == 4 || i == 8 || i == 12
         encrypt_letter(key, date, letter, :d_shift)
       end
-    end   
+    end
     encrypted_message.join
+  end
+
+  def decrypt_letter(key, date, letter, shift_by)
+    alphabet = Alphabet.new
+    if final_shift(key, date)[shift_by] == 27
+      @decrypted_message << letter
+    else
+      shift_value = alphabet.letter_value(letter) - final_shift(key, date)[shift_by]
+      if shift_value < 0
+        new_letter = alphabet.find_key(refactor_shift_value(shift_value))
+        @decrypted_message << new_letter
+      else
+        new_letter = alphabet.find_key(shift_value)
+        @decrypted_message << new_letter
+      end
+    end
+    new_letter
   end
 
   def decrypt_message(message, key, date)
