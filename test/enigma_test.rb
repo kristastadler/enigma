@@ -60,11 +60,11 @@ class EnigmaTest < Minitest::Test
     assert_equal expected, enigma.decrypt("nib udmcxpu", "02715")
   end
 
-  def test_it_can_create_key
+  def test_it_can_create_random_key
     enigma = Enigma.new
 
-    assert_instance_of String, enigma.create_key
-    assert_equal 5, enigma.create_key.length
+    assert_instance_of String, enigma.create_random_key
+    assert_equal 5, enigma.create_random_key.length
   end
 
   def test_it_can_encrypt_without_date_or_key_passed_in
@@ -74,19 +74,6 @@ class EnigmaTest < Minitest::Test
     assert_instance_of Hash, enigma.encrypt("hello world")
   end
 
-  def test_it_can_create_full_list_of_alphabet_values
-    enigma = Enigma.new
-
-    assert_equal 27, enigma.alphabet_with_values.length
-  end
-
-  def test_it_finds_alphabet_value
-    enigma = Enigma.new
-
-    assert_equal 21, enigma.alphabet_value("u")
-    assert_equal 27, enigma.alphabet_value(" ")
-    assert_equal 3, enigma.alphabet_value("c")
-  end
 
   def test_it_finds_shift
     enigma = Enigma.new
