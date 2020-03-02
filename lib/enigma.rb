@@ -42,84 +42,76 @@ class Enigma
                 }
   end
 
-  def encrypt_message(message, key, date)
-    message_array = message.each_char.map(&:to_s)
-    alphabet = Alphabet.new
+  def create_message_array(message)
+    message.each_char.map(&:to_s)
+  end
 
+  def refactor_shift_value(shift_value)
+    x = shift_value / 27
+    y = 27 * x
+    shift_value = shift_value - y
+  end
+
+  def encrypt_message(message, key, date)
+    alphabet = Alphabet.new
     i = 0
-    a_transform = {}
-    b_transform = {}
-    c_transform = {}
-    d_transform = {}
     encrypted_message = []
 
-    message_array.each do |letter|
+    create_message_array(message).each do |letter|
       i += 1
       if i == 1 || i == 5 || i == 9
         if encryption_shift(key, date)[:a_shift] == 27
-          letter = a_transform[letter] = letter
           encrypted_message << letter
         else
           shift_value = alphabet.letter_value(letter) + encryption_shift(key, date)[:a_shift]
           if shift_value > 27
-            x = shift_value / 27
-            y = 27 * x
-            shift_value = shift_value - y
-            letter = a_transform[letter] = alphabet.find_key(shift_value)
+            shift_value = refactor_shift_value(shift_value)
+            letter = alphabet.find_key(shift_value)
             encrypted_message << letter
           else
-            letter = a_transform[letter] = alphabet.find_key(shift_value)
+            letter = alphabet.find_key(shift_value)
             encrypted_message << letter
           end
         end
       elsif i == 2 || i == 6 || i == 10
         if encryption_shift(key, date)[:b_shift] == 27
-          letter = b_transform[letter] = letter
           encrypted_message << letter
         else
           shift_value = alphabet.letter_value(letter) + encryption_shift(key, date)[:b_shift]
           if shift_value > 27
-            x = shift_value / 27
-            y = 27 * x
-            shift_value = shift_value - y
-            letter = a_transform[letter] = alphabet.find_key(shift_value)
+            shift_value = refactor_shift_value(shift_value)
+            letter = alphabet.find_key(shift_value)
             encrypted_message << letter
           else
-            letter = b_transform[letter] = alphabet.find_key(shift_value)
+            letter = alphabet.find_key(shift_value)
             encrypted_message << letter
           end
         end
       elsif i == 3 || i == 7 || i == 11
         if encryption_shift(key, date)[:c_shift] == 27
-          letter = c_transform[letter] = letter
           encrypted_message << letter
         else
           shift_value = alphabet.letter_value(letter) + encryption_shift(key, date)[:c_shift]
           if shift_value > 27
-            x = shift_value / 27
-            y = 27 * x
-            shift_value = shift_value - y
-            letter = a_transform[letter] = alphabet.find_key(shift_value)
+            shift_value = refactor_shift_value(shift_value)
+            letter = alphabet.find_key(shift_value)
             encrypted_message << letter
           else
-            letter = c_transform[letter] = alphabet.find_key(shift_value)
+            letter = alphabet.find_key(shift_value)
             encrypted_message << letter
           end
         end
       elsif i == 4 || i == 8 || i == 12
         if encryption_shift(key, date)[:d_shift] == 27
-          letter = d_transform[letter] = letter
           encrypted_message << letter
         else
           shift_value = alphabet.letter_value(letter) + encryption_shift(key, date)[:d_shift]
           if shift_value > 27
-            x = shift_value / 27
-            y = 27 * x
-            shift_value = shift_value - y
-            letter = a_transform[letter] = alphabet.find_key(shift_value)
+            shift_value = refactor_shift_value(shift_value)
+            letter = alphabet.find_key(shift_value)
             encrypted_message << letter
           else
-            letter = d_transform[letter] = alphabet.find_key(shift_value)
+            letter = alphabet.find_key(shift_value)
             encrypted_message << letter
           end
         end
@@ -129,21 +121,14 @@ class Enigma
   end
 
   def decrypt_message(message, key, date)
-    message_array = message.each_char.map(&:to_s)
     alphabet = Alphabet.new
-
     i = 0
-    a_transform = {}
-    b_transform = {}
-    c_transform = {}
-    d_transform = {}
     encrypted_message = []
 
-    message_array.each do |letter|
+    create_message_array(message).each do |letter|
       i += 1
       if i == 1 || i == 5 || i == 9
         if encryption_shift(key, date)[:a_shift] == 27
-          letter = a_transform[letter] = letter
           encrypted_message << letter
         else
           shift_value = alphabet.letter_value(letter) - encryption_shift(key, date)[:a_shift]
@@ -151,16 +136,15 @@ class Enigma
             x = shift_value / 27
             y = 27 * x
             shift_value = shift_value - y
-            letter = a_transform[letter] = alphabet.find_key(shift_value)
+            letter = alphabet.find_key(shift_value)
             encrypted_message << letter
           else
-            letter = a_transform[letter] = alphabet.find_key(shift_value)
+            letter = alphabet.find_key(shift_value)
             encrypted_message << letter
           end
         end
       elsif i == 2 || i == 6 || i == 10
         if encryption_shift(key, date)[:b_shift] == 27
-          letter = b_transform[letter] = letter
           encrypted_message << letter
         else
           shift_value = alphabet.letter_value(letter) - encryption_shift(key, date)[:b_shift]
@@ -168,16 +152,15 @@ class Enigma
             x = shift_value / 27
             y = 27 * x
             shift_value = shift_value - y
-            letter = a_transform[letter] = alphabet.find_key(shift_value)
+            letter = alphabet.find_key(shift_value)
             encrypted_message << letter
           else
-            letter = b_transform[letter] = alphabet.find_key(shift_value)
+            letter = alphabet.find_key(shift_value)
             encrypted_message << letter
           end
         end
       elsif i == 3 || i == 7 || i == 11
         if encryption_shift(key, date)[:c_shift] == 27
-          letter = c_transform[letter] = letter
           encrypted_message << letter
         else
           shift_value = alphabet.letter_value(letter) - encryption_shift(key, date)[:c_shift]
@@ -185,16 +168,15 @@ class Enigma
             x = shift_value / 27
             y = 27 * x
             shift_value = shift_value - y
-            letter = a_transform[letter] = alphabet.find_key(shift_value)
+            letter = alphabet.find_key(shift_value)
             encrypted_message << letter
           else
-            letter = c_transform[letter] = alphabet.find_key(shift_value)
+            letter = alphabet.find_key(shift_value)
             encrypted_message << letter
           end
         end
       elsif i == 4 || i == 8 || i == 12
         if encryption_shift(key, date)[:d_shift] == 27
-          letter = d_transform[letter] = letter
           encrypted_message << letter
         else
           shift_value = alphabet.letter_value(letter) - encryption_shift(key, date)[:d_shift]
@@ -202,10 +184,10 @@ class Enigma
             x = shift_value / 27
             y = 27 * x
             shift_value = shift_value - y
-            letter = d_transform[letter] = alphabet.find_key(shift_value)
+            letter = alphabet.find_key(shift_value)
             encrypted_message << letter
           else
-            letter = d_transform[letter] = alphabet.find_key(shift_value)
+            letter = alphabet.find_key(shift_value)
             encrypted_message << letter
           end
         end
