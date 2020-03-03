@@ -11,7 +11,6 @@ class AlphabetTest < Minitest::Test
     alphabet = Alphabet.new
 
     assert_instance_of Alphabet, alphabet
-
   end
 
   def test_it_has_attributes
@@ -57,12 +56,12 @@ class AlphabetTest < Minitest::Test
   end
 
   def test_it_can_locate_letter_value
-      alphabet = Alphabet.new
+    alphabet = Alphabet.new
 
-      assert_equal 21, alphabet.letter_value("u")
-      assert_equal 27, alphabet.letter_value(" ")
-      assert_equal 3, alphabet.letter_value("c")
-    end
+    assert_equal 21, alphabet.letter_value("u")
+    assert_equal 27, alphabet.letter_value(" ")
+    assert_equal 3, alphabet.letter_value("c")
+  end
 
   def test_it_can_find_key_by_value
     alphabet = Alphabet.new
@@ -70,6 +69,6 @@ class AlphabetTest < Minitest::Test
     assert_equal "u", alphabet.find_key(21)
     assert_equal " ", alphabet.find_key(27)
     assert_equal "c", alphabet.find_key(3)
-  end   
+  end
 
 end

@@ -18,7 +18,6 @@ class Enigma
                   key: key,
                   date: date
                 }
-    encryption
   end
 
   def decrypt(message, key, date = Date.today.strftime('%d%m%y'))
@@ -88,7 +87,7 @@ class Enigma
         encrypt_letter(key, date, letter, :d_shift)
       end
     end
-    encrypted_message.join
+    @encrypted_message.join
   end
 
   def decrypt_letter(key, date, letter, shift_by)
@@ -111,9 +110,7 @@ class Enigma
   def decrypt_message(message, key, date)
     message = message.downcase
     i = 0
-
     create_message_array(message).each do |letter|
-
       i += 1
       if i == 1 || i == 5 || i == 9 || i == 13 || i == 17 || i == 21
         decrypt_letter(key, date, letter, :a_shift)
