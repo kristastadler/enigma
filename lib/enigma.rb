@@ -23,7 +23,7 @@ class Enigma
 
   def decrypt(message, key, date = Date.today.strftime('%d%m%y'))
     decryption = {
-                  decryption: "hello world",
+                  decryption: decrypt_message(message, key, date),
                   key: key,
                   date: date
                   }
@@ -78,13 +78,13 @@ class Enigma
 
     create_message_array(message).each do |letter|
       i += 1
-      if i == 1 || i == 5 || i == 9
+      if i == 1 || i == 5 || i == 9 || i == 13 || i == 17 || i == 21
         encrypt_letter(key, date, letter, :a_shift)
-      elsif i == 2 || i == 6 || i == 10
+      elsif i == 2 || i == 6 || i == 10 || i == 14 || i == 18 || i == 22
         encrypt_letter(key, date, letter, :b_shift)
-      elsif i == 3 || i == 7 || i == 11
+      elsif i == 3 || i == 7 || i == 11 || i == 15 || i == 19 || i == 23
         encrypt_letter(key, date, letter, :c_shift)
-      elsif i == 4 || i == 8 || i == 12
+      elsif i == 4 || i == 8 || i == 12 || i == 16 || i == 20 || i == 24
         encrypt_letter(key, date, letter, :d_shift)
       end
     end
@@ -112,17 +112,18 @@ class Enigma
     i = 0
 
     create_message_array(message).each do |letter|
+
       i += 1
-      if i == 1 || i == 5 || i == 9
+      if i == 1 || i == 5 || i == 9 || i == 13 || i == 17 || i == 21
         decrypt_letter(key, date, letter, :a_shift)
-      elsif i == 2 || i == 6 || i == 10
+      elsif i == 2 || i == 6 || i == 10 || i == 14 || i == 18 || i == 22
         decrypt_letter(key, date, letter, :b_shift)
-      elsif i == 3 || i == 7 || i == 11
+      elsif i == 3 || i == 7 || i == 11 || i == 15 || i == 19 || i == 23
         decrypt_letter(key, date, letter, :c_shift)
-      elsif i == 4 || i == 8 || i == 12
+      elsif i == 4 || i == 8 || i == 12 || i == 16 || i == 20 || i == 24
         decrypt_letter(key, date, letter, :d_shift)
       end
-    end   
+    end
     @decrypted_message.join
   end
 
