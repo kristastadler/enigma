@@ -14,5 +14,5 @@ I would give myself a *3* for Ruby Conventions and Mechanics. My lines are all i
 I would give myself a *2* for TDD, only because I did not test edge cases. Expected behavior is fully tested and SimpleCov shows 100% test coverage. I used tests to drive my code writing and found my tests especially useful during the refactoring process -- code failures and errors helped me make sure that refactoring didn't break my program.
 
 
-## Version Control
-I would give myself a *3* for Version Control. I made a concerted effort with this project to try to write clear commit messages and detailed pull requests. I made 59 commits and 12 pull requests. I added discrete pieces of functionality to my master branch using pull requests and committed often.
+### Version Control
+I would give myself a *3* for Version Control. I made a concerted effort with this project to try to write clear commit messages and detailed pull requests. I made 61 commits and 12 pull requests. I added discrete pieces of functionality to my master branch using pull requests and committed often.
