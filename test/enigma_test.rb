@@ -60,11 +60,11 @@ class EnigmaTest < Minitest::Test
     assert_equal expected, enigma.decrypt("nib udmcxpu", "02715")
   end
 
-  def test_it_can_create_key
+  def test_it_can_create_random_key
     enigma = Enigma.new
 
-    assert_instance_of String, enigma.create_key
-    assert_equal 5, enigma.create_key.length
+    assert_instance_of String, enigma.create_random_key
+    assert_equal 5, enigma.create_random_key.length
   end
 
   def test_it_can_encrypt_without_date_or_key_passed_in
@@ -74,26 +74,44 @@ class EnigmaTest < Minitest::Test
     assert_instance_of Hash, enigma.encrypt("hello world")
   end
 
-  def test_it_can_create_full_list_of_alphabet_values
+  def test_it_finds_encryption_shift
     enigma = Enigma.new
 
-    assert_equal 27, enigma.alphabet_with_values.length
+    assert_instance_of Hash, enigma.final_shift("02715", "040895")
   end
 
-  def test_it_finds_alphabet_value
+  def test_it_finds_individual_shifts
     enigma = Enigma.new
 
-    assert_equal 21, enigma.alphabet_value("u")
-    assert_equal 27, enigma.alphabet_value(" ")
-    assert_equal 3, enigma.alphabet_value("c")
+    assert_equal 3, enigma.final_shift("02715", "040895")[:a_shift]
+    assert_equal 27, enigma.final_shift("02715", "040895")[:b_shift]
+    assert_equal 73, enigma.final_shift("02715", "040895")[:c_shift]
+    assert_equal 20, enigma.final_shift("02715", "040895")[:d_shift]
   end
 
-  def test_it_finds_shift
+  def test_it_creates_message_array
     enigma = Enigma.new
 
-    assert_instance_of Hash, enigma.encryption_shift("02715", "040895")
+    assert_equal ["h", "e", "l", "l", "o"], enigma.create_message_array("hello")
   end
 
+  def test_it_refactors_shift_value
+    enigma = Enigma.new
+
+    assert_equal 24, enigma.refactor_shift_value(78)
+  end
+
+  def test_it_can_encrypt_letter
+    enigma = Enigma.new
+
+    assert_equal "k", enigma.encrypt_letter("02715", "040895", "h", :a_shift)
+  end
+
+  def test_it_can_decrypt_letter
+    enigma = Enigma.new
+
+    assert_equal "h", enigma.decrypt_letter("02715", "040895", "k", :a_shift)
+  end
 
   def test_it_can_encrypt_message
     enigma = Enigma.new
@@ -106,6 +124,4 @@ class EnigmaTest < Minitest::Test
 
     assert_equal "hello world", enigma.decrypt_message("keder ohulw", "02715", "040895")
   end
-
-
 end
