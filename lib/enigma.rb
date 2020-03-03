@@ -74,8 +74,8 @@ class Enigma
   end
 
   def encrypt_message(message, key, date)
+    message = message.downcase
     i = 0
-
     create_message_array(message).each do |letter|
       i += 1
       if i == 1 || i == 5 || i == 9 || i == 13 || i == 17 || i == 21
@@ -109,6 +109,7 @@ class Enigma
   end
 
   def decrypt_message(message, key, date)
+    message = message.downcase
     i = 0
 
     create_message_array(message).each do |letter|
